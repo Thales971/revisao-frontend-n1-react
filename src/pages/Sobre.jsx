@@ -1,40 +1,71 @@
-import Card from '../components/Card'
+import { GraduationCap, BookOpen, Shield, Dumbbell, UtensilsCrossed, Github } from 'lucide-react'
 import { perfil } from '../data/perfil'
 
 export default function Sobre() {
-  return (
-    <section className="container mx-auto px-4 py-16">
-      <p className="text-mint-400 uppercase tracking-widest text-sm font-bold">Sobre</p>
-      <h2 className="text-3xl font-extrabold mb-4">Quem sou eu</h2>
-      <p className="text-slate-400 max-w-3xl mb-10">
-        Eu sou o {perfil.nome}. Curso {perfil.curso} no {perfil.instituicao}
-        e moro em {perfil.cidade}. O alvo é claro: {perfil.objetivo}.
-      </p>
+  const cards = [
+    {
+      icone: GraduationCap,
+      titulo: 'Escola',
+      texto: `Técnico no ${perfil.instituicao}. Front agora, back e mobile no caminho.`,
+    },
+    {
+      icone: BookOpen,
+      titulo: 'Estudando',
+      texto: `${perfil.estudando}, TypeScript e Prisma quando o trabalho pede.`,
+    },
+    {
+      icone: Shield,
+      titulo: 'Interesses',
+      texto: perfil.interesses.join(', '),
+    },
+    {
+      icone: Dumbbell,
+      titulo: 'Esporte',
+      texto: perfil.esporte,
+    },
+    {
+      icone: UtensilsCrossed,
+      titulo: 'Comida',
+      texto: perfil.comida,
+    },
+    {
+      icone: Github,
+      titulo: 'GitHub',
+      texto: 'Commit em português e repo atualizado.',
+    },
+  ]
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <Card titulo="Formação">
-          Técnico de Desenvolvimento de Sistemas no SENAI de Valinhos. Estudo frontend agora
-          e vou empilhando backend, banco e mobile no caminho.
-        </Card>
-        <Card titulo="O que estou estudando">
-          Aprofundando {perfil.estudando}. Também mexo com TypeScript, Expo, Prisma e PostgreSQL
-          quando o projeto pede.
-        </Card>
-        <Card titulo="Interesses">
-          {perfil.interesses.join(', ')}. Gosto de entender como a tela funciona, como a rede se comporta
-          e como as coisas conectadas conversam.
-        </Card>
-        <Card titulo="Esporte">
-          {perfil.esporte}. Treino pesado e levo a mesma lógica pro código: técnica, volume e consistência.
-        </Card>
-        <Card titulo="Comida favorita">
-          {perfil.comida}. Combinação honesta, igual README de projeto que precisa funcionar de primeira.
-        </Card>
-        <Card titulo="Como eu trabalho">
-          Commits em português, pasta organizada e GitHub sempre atualizado. Prefiro entregar estável
-          do que encher de efeito que quebra no celular.
-        </Card>
-      </div>
-    </section>
+  return (
+    <>
+      <section className="bg-gradient-to-r from-navy-800 to-navy-900 py-14">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-10">
+          <img
+            src={perfil.foto}
+            alt={perfil.nome}
+            className="w-40 h-40 rounded-2xl object-cover border-4 border-mint-400"
+          />
+
+          <div>
+            <h1 className="text-4xl font-bold mb-3">Quem sou eu</h1>
+            <p className="text-slate-300 max-w-2xl">
+              {perfil.nome}, {perfil.cidade}. Faço {perfil.curso} e o plano é virar {perfil.objetivo}.
+            </p>
+            <p className="text-mint-400 mt-4 italic">“{perfil.frase}”</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12">
+        <div className="container mx-auto px-4 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {cards.map((card) => (
+            <article key={card.titulo} className="bg-navy-800 border border-slate-700 rounded-xl p-6">
+              <card.icone className="text-mint-400 mb-3" size={28} />
+              <h3 className="text-xl font-bold mb-2">{card.titulo}</h3>
+              <p className="text-slate-400">{card.texto}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
   )
 }

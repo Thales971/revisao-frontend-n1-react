@@ -18,8 +18,8 @@ export default function Projetos() {
 
   return (
     <section className="container mx-auto px-4 py-16">
-      <p className="text-mint-400 uppercase tracking-widest text-sm font-bold">Projetos realizados</p>
-      <h2 className="text-3xl font-extrabold mb-6">Alguns trabalhos do curso</h2>
+      <h2 className="text-3xl font-bold mb-2">Projetos</h2>
+      <p className="text-slate-400 mb-6">Algumas coisas que eu já fiz no curso e no GitHub.</p>
 
       <div className="flex flex-wrap gap-2 mb-8">
         {filtros.map((item) => (
@@ -45,17 +45,22 @@ export default function Projetos() {
       </div>
 
       {selecionado && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
-          <div className="bg-navy-800 border border-slate-700 rounded-2xl p-6 max-w-md w-full">
-            <h3 className="text-2xl font-bold mb-3">{selecionado.titulo}</h3>
-            <p className="text-slate-300 mb-6">{selecionado.detalhes}</p>
-            <div className="flex flex-wrap gap-3">
-              {selecionado.url && (
-                <a href={selecionado.url} target="_blank" rel="noreferrer">
-                  <Button>Ver no GitHub</Button>
-                </a>
-              )}
-              <Button variante="linha" onClick={() => setSelecionado(null)}>Fechar</Button>
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
+          <div className="bg-navy-800 border border-slate-700 rounded-2xl max-w-md w-full overflow-hidden">
+            <img src={selecionado.imagem} alt={selecionado.titulo} className="w-full h-44 object-cover" />
+            <div className="p-6">
+              <h3 className="text-2xl font-bold mb-3">{selecionado.titulo}</h3>
+              <p className="text-slate-300 mb-6">{selecionado.detalhes}</p>
+              <div className="flex flex-wrap gap-3">
+                {selecionado.url && (
+                  <a href={selecionado.url} target="_blank" rel="noreferrer">
+                    <Button>Ver no GitHub</Button>
+                  </a>
+                )}
+                <Button variant="outline" onClick={() => setSelecionado(null)}>
+                  Fechar
+                </Button>
+              </div>
             </div>
           </div>
         </div>
