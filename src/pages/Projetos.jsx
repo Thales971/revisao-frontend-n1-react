@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { projetos } from '../data/projetos'
+import { projetos } from '../data/perfil'
 import ProjetoCard from '../components/ProjetoCard'
 import Button from '../components/Button'
 
@@ -49,7 +49,14 @@ export default function Projetos() {
           <div className="bg-navy-800 border border-slate-700 rounded-2xl p-6 max-w-md w-full">
             <h3 className="text-2xl font-bold mb-3">{selecionado.titulo}</h3>
             <p className="text-slate-300 mb-6">{selecionado.detalhes}</p>
-            <Button variante="linha" onClick={() => setSelecionado(null)}>Fechar</Button>
+            <div className="flex flex-wrap gap-3">
+              {selecionado.url && (
+                <a href={selecionado.url} target="_blank" rel="noreferrer">
+                  <Button>Ver no GitHub</Button>
+                </a>
+              )}
+              <Button variante="linha" onClick={() => setSelecionado(null)}>Fechar</Button>
+            </div>
           </div>
         </div>
       )}
