@@ -24,8 +24,9 @@ export default function Header() {
         <div className="flex justify-between items-center py-4">
           <Link to="/" className="flex items-center gap-2 hover:opacity-80">
             <FaCode className="text-mint-400 text-2xl" />
-            <span className="font-bold text-mint-400">&lt;TT /&gt;</span>
-            <span className="hidden sm:inline font-bold">Thales Torsatto</span>
+            <span className="text-2xl font-bold">
+              Thales<span className="text-mint-400">Dev</span>
+            </span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
